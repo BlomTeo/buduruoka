@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lisää resepti</title>
+</head>
+
+<body>
+
+    <h1>Lisää resepti</h1>
+
+    <form method="POST">
+
+        <label>Reseptin nimi</label>
+        <input type="text" name="title">
+
+        <br><br>
+
+        <label>Ainekset</label>
+        <textarea name="ingredients"></textarea>
+
+        <br><br>
+
+        <label>Valmistusohje</label>
+        <textarea name="instructions"></textarea>
+
+        <br><br>
+
+        <label>Hinta</label>
+        <input type="number" step="0.01" name="price">
+
+        <br><br>
+
+        <label>Annoksia</label>
+        <input type="number" name="servings">
+
+        <br><br>
+
+        <button type="submit">Lisää resepti</button>
+
+    </form>
+
+</body>
+
+</html>
