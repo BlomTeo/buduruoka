@@ -1,15 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="fi">
 
 <head>
-  <title>Etusivu</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Buduruoka</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-  <h1>Buduruoka</h1>
-  <p>
-    <b>Hyvää ruokaa, pienellä budjetilla</b>!
-  </p>
+
+    <header>
+        <h1>Buduruoka</h1>
+        <p><b>Hyvää ruokaa, pienellä budjetilla!</b></p>
+    </header>
+
+    <main>
+
+        <section class="intro">
+            <h2>Löydä halpoja ja hyviä reseptejä</h2>
+            <p>
+                Selaa muiden jakamia budjettireseptejä tai jaa oma suosikkisi.
+            </p>
+        </section>
+
+        <section class="search">
+            <input type="text" placeholder="Hae reseptejä...">
+            <button>Hae</button>
+        </section>
+
+        <section>
+            <h2>Uusimmat reseptit</h2>
+
+            <div class="recipe-card">
+                <h3>Reseptit tulevat tähän</h3>
+                <p>Tähän voidaan myöhemmin näyttää SQLite-tietokannasta reseptejä.</p>
+            </div>
+        </section>
+
+        <button class="add-button">Lisää oma resepti</button>
+
+    </main>
+
 </body>
 
 </html>
