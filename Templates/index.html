@@ -34,10 +34,29 @@
         <section>
             <h2>Uusimmat reseptit</h2>
 
-            <div class="recipe-card">
-                <h3>Reseptit tulevat tähän</h3>
-                <p>Tähän voidaan myöhemmin näyttää SQLite-tietokannasta reseptejä.</p>
-            </div>
+            {% for recipe in recipes %}
+
+    <div class="recipe-card">
+
+        <h3>{{ recipe["title"] }}</h3>
+
+        <p>
+            <b>Hinta:</b> {{ recipe["price"] }} €
+        </p>
+
+        <p>
+            <b>Annoksia:</b> {{ recipe["servings"] }}
+        </p>
+
+        <h4>Ainekset</h4>
+        <p>{{ recipe["ingredients"] }}</p>
+
+        <h4>Valmistusohje</h4>
+        <p>{{ recipe["instructions"] }}</p>
+
+    </div>
+
+{% endfor %}
         </section>
 
         <button class="add-button">Lisää oma resepti</button>

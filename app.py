@@ -6,7 +6,16 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    connection = sqlite3.connect("database.db")
+    connection.row_factory = sqlite3.Row
+
+    recipes = connection.execute(
+        "SELECT * FROM recipes ORDER BY id DESC"
+    ).fetchall()
+
+    connection.close()
+
+    return render_template("index.html", recipes=recipes)
 
 @app.route("/add", methods=["GET", "POST"])
 def add():
