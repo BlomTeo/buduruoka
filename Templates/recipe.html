@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ recipe["title"] }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <main>
+
+        <h1>{{ recipe["title"] }}</h1>
+
+        <p>
+            <b>Hinta:</b> {{ recipe["price"] }} €
+        </p>
+
+        <p>
+            <b>Annoksia:</b> {{ recipe["servings"] }}
+        </p>
+
+        <h2>Ainekset</h2>
+        <p>{{ recipe["ingredients"] }}</p>
+
+        <h2>Valmistusohje</h2>
+        <p>{{ recipe["instructions"] }}</p>
+
+        <a href="{{ url_for('index') }}">Takaisin etusivulle</a>
+
+    </main>
+
+</body>
+
+</html>

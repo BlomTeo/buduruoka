@@ -43,3 +43,16 @@ def add():
 
     return render_template("add.html")
 
+@app.route("/recipe/<int:recipe_id>")
+def recipe(recipe_id):
+    connection = sqlite3.connect("database.db")
+    connection.row_factory = sqlite3.Row
+
+    recipe = connection.execute(
+        "SELECT * FROM recipes WHERE id = ?",
+        (recipe_id,)
+    ).fetchone()
+
+    connection.close()
+
+    return render_template("recipe.html", recipe=recipe)
