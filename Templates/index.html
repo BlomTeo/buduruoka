@@ -25,12 +25,11 @@
                 Selaa muiden jakamia budjettireseptejä tai jaa oma suosikkisi.
             </p>
         </section>
-
-        <section class="search">
-            <input type="text" placeholder="Hae reseptejä...">
-            <button>Hae</button>
-        </section>
-
+	
+	<form class="search" method="GET" action="/">
+    		<input type="text" name="query" placeholder="Hae reseptejä...">
+    		<button type="submit">Hae</button>
+	</form>
         <section>
             <h2>Uusimmat reseptit</h2>
 

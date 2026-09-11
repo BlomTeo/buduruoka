@@ -6,12 +6,24 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
+    query = request.args.get("query")
+
     connection = sqlite3.connect("database.db")
     connection.row_factory = sqlite3.Row
 
-    recipes = connection.execute(
-        "SELECT * FROM recipes ORDER BY id DESC"
-    ).fetchall()
+    if query:
+        recipes = connection.execute(
+            """
+            SELECT * FROM recipes
+            WHERE title LIKE ? OR ingredients LIKE ? OR instructions LIKE ?
+            ORDER BY id DESC
+            """,
+            (f"%{query}%", f"%{query}%", f"%{query}%")
+        ).fetchall()
+    else:
+        recipes = connection.execute(
+            "SELECT * FROM recipes ORDER BY id DESC"
+        ).fetchall()
 
     connection.close()
 
