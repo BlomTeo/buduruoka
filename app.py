@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 app = Flask(__name__)
 
@@ -95,3 +95,26 @@ def register():
         connection.close()
 
     return render_template("register.html")
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        connection = sqlite3.connect("database.db")
+        connection.row_factory = sqlite3.Row
+
+        user = connection.execute(
+            "SELECT * FROM users WHERE username = ?",
+            (username,)
+        ).fetchone()
+
+        connection.close()
+
+        if user and check_password_hash(user["password_hash"], password):
+            return "Kirjautuminen onnistui"
+
+        return "Väärä käyttäjänimi tai salasana"
+
+    return render_template("login.html")
