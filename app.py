@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from werkzeug.security import generate_password_hash
 import sqlite3
 app = Flask(__name__)
 
@@ -68,3 +69,29 @@ def recipe(recipe_id):
     connection.close()
 
     return render_template("recipe.html", recipe=recipe)
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        password_hash = generate_password_hash(
+		password,
+		method="pbkdf2:sha256"
+	)
+
+        connection = sqlite3.connect("database.db")
+
+        connection.execute(
+            """
+            INSERT INTO users (username, password_hash)
+            VALUES (?, ?)
+            """,
+            (username, password_hash)
+        )
+
+        connection.commit()
+        connection.close()
+
+    return render_template("register.html")
