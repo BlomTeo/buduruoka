@@ -1,9 +1,10 @@
-from flask import Flask
+from flask import Flask, render_template, request, session
 from flask import render_template
 from flask import request
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 app = Flask(__name__)
+app.secret_key = "change-this-later"
 
 @app.route("/")
 def index():
@@ -112,8 +113,16 @@ def login():
 
         connection.close()
 
+@app.route("/logout")
+def logout():
+    session.clear()
+    return "Kirjauduttu ulos"
+
         if user and check_password_hash(user["password_hash"], password):
-            return "Kirjautuminen onnistui"
+		session["user_id"] = user["id"]
+		session["username"] = user["username"]
+
+		return "Kirjautuminen onnistui"
 
         return "Väärä käyttäjänimi tai salasana"
 
