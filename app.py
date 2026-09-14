@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, session
+from flask import redirect, url_for
 from flask import render_template
 from flask import request
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -113,17 +114,25 @@ def login():
 
         connection.close()
 
-@app.route("/logout")
-def logout():
-    session.clear()
-    return "Kirjauduttu ulos"
-
         if user and check_password_hash(user["password_hash"], password):
-		session["user_id"] = user["id"]
-		session["username"] = user["username"]
+            session["user_id"] = user["id"]
+            session["username"] = user["username"]
 
-		return "Kirjautuminen onnistui"
+            return "Kirjautuminen onnistui"
 
         return "Väärä käyttäjänimi tai salasana"
 
     return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("index"))
+
+
+
+
+
+
+
