@@ -15,7 +15,7 @@
 #    Käyttäjä pystyy antamaan reseptille kommentin ja arvosanan. Reseptistä näytetään kommentit ja keskimääräinen arvosana.
 #
 # Tässä pääasiallinen tietokohde on ruokaresepti ja toissijainen tietokohde on kommentti reseptiin.
-## Sovelluksen testaaminen
+## Sovelluksen testaaminen:
 #
 # 1. Kloonaa repositorio ja siirry projektin kansioon.
 #
@@ -63,7 +63,6 @@
 # http://127.0.0.1:5000
 #
 #
-## Sovelluksen kokeileminen
 #
 # Sovelluksessa voi tällä hetkellä:
 #
