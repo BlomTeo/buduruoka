@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Muokkaa reseptiä</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <main>
+
+        <h1>Muokkaa reseptiä</h1>
+
+        <form method="POST">
+
+            <label>Reseptin nimi</label>
+            <input
+                type="text"
+                name="title"
+                value="{{ recipe['title'] }}"
+                required
+            >
+
+            <br><br>
+
+            <label>Ainekset</label>
+            <textarea name="ingredients" required>{{ recipe["ingredients"] }}</textarea>
+
+            <br><br>
+
+            <label>Valmistusohje</label>
+            <textarea name="instructions" required>{{ recipe["instructions"] }}</textarea>
+
+            <br><br>
+
+            <label>Hinta</label>
+            <input
+                type="number"
+                name="price"
+                step="0.01"
+                value="{{ recipe['price'] }}"
+            >
+
+            <br><br>
+
+            <label>Annoksia</label>
+            <input
+                type="number"
+                name="servings"
+                value="{{ recipe['servings'] }}"
+            >
+
+            <br><br>
+
+            <button type="submit">Tallenna muutokset</button>
+
+        </form>
+
+    </main>
+
+</body>
+
+</html>

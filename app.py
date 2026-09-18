@@ -75,6 +75,52 @@ def recipe(recipe_id):
 
     return render_template("recipe.html", recipe=recipe)
 
+@app.route("/recipe/<int:recipe_id>/edit", methods=["GET", "POST"])
+def edit_recipe(recipe_id):
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    connection = sqlite3.connect("database.db")
+    connection.row_factory = sqlite3.Row
+
+    recipe = connection.execute(
+        "SELECT * FROM recipes WHERE id = ?",
+        (recipe_id,)
+    ).fetchone()
+
+    if recipe is None:
+        connection.close()
+        return "Reseptiä ei löytynyt"
+
+    if recipe["user_id"] != session["user_id"]:
+        connection.close()
+        return "Et voi muokata tätä reseptiä"
+
+    if request.method == "POST":
+        title = request.form["title"]
+        ingredients = request.form["ingredients"]
+        instructions = request.form["instructions"]
+        price = request.form["price"]
+        servings = request.form["servings"]
+
+        connection.execute(
+            """
+            UPDATE recipes
+            SET title = ?, ingredients = ?, instructions = ?, price = ?, servings = ?
+            WHERE id = ?
+            """,
+            (title, ingredients, instructions, price, servings, recipe_id)
+        )
+
+        connection.commit()
+        connection.close()
+
+        return redirect(url_for("recipe", recipe_id=recipe_id))
+
+    connection.close()
+
+    return render_template("edit_recipe.html", recipe=recipe)
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -82,9 +128,9 @@ def register():
         password = request.form["password"]
 
         password_hash = generate_password_hash(
-		password,
-		method="pbkdf2:sha256"
-	)
+        password,
+        method="pbkdf2:sha256"
+    )
 
         connection = sqlite3.connect("database.db")
 

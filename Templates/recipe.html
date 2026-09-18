@@ -29,8 +29,15 @@
         <h2>Valmistusohje</h2>
         <p>{{ recipe["instructions"] }}</p>
 
-        <a href="{{ url_for('index') }}">Takaisin etusivulle</a>
+        {% if session.get("user_id") == recipe["user_id"] %}
+            <a href="{{ url_for('edit_recipe', recipe_id=recipe['id']) }}">
+                Muokkaa reseptiä
+            </a>
+        {% endif %}
 
+        <p>
+        <a href="{{ url_for('index') }}">Takaisin etusivulle</a>
+        </p>
     </main>
 
 </body>
