@@ -35,6 +35,9 @@ def index():
 @app.route("/add", methods=["GET", "POST"])
 def add():
 
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
     if request.method == "POST":
         title = request.form["title"]
         ingredients = request.form["ingredients"]
@@ -47,10 +50,10 @@ def add():
         connection.execute(
             """
             INSERT INTO recipes
-            (title, ingredients, instructions, price, servings)
-            VALUES (?, ?, ?, ?, ?)
+            (title, ingredients, instructions, price, servings, user_id)
+            VALUES (?, ?, ?, ?, ?, ?)
             """,
-            (title, ingredients, instructions, price, servings)
+            (title, ingredients, instructions, price, servings, session ["user_id"])
         )
 
         connection.commit()

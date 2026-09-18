@@ -4,7 +4,8 @@ CREATE TABLE recipes (
     ingredients TEXT NOT NULL,
     instructions TEXT NOT NULL,
     price REAL,
-    servings INTEGER
+    servings INTEGER,
+    user_id INTEGER REFERENCES users
 );
 
 CREATE TABLE users (
