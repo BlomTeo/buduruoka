@@ -121,6 +121,37 @@ def edit_recipe(recipe_id):
 
     return render_template("edit_recipe.html", recipe=recipe)
 
+@app.route("/recipe/<int:recipe_id>/delete", methods=["POST"])
+def delete_recipe(recipe_id):
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    connection = sqlite3.connect("database.db")
+    connection.row_factory = sqlite3.Row
+
+    recipe = connection.execute(
+        "SELECT * FROM recipes WHERE id = ?",
+        (recipe_id,)
+    ).fetchone()
+
+    if recipe is None:
+        connection.close()
+        return "Reseptiä ei löytynyt"
+
+    if recipe["user_id"] != session["user_id"]:
+        connection.close()
+        return "Et voi poistaa tätä reseptiä"
+
+    connection.execute(
+        "DELETE FROM recipes WHERE id = ?",
+        (recipe_id,)
+    )
+
+    connection.commit()
+    connection.close()
+
+    return redirect(url_for("index"))
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":

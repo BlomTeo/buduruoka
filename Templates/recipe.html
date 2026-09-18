@@ -32,7 +32,14 @@
         {% if session.get("user_id") == recipe["user_id"] %}
             <a href="{{ url_for('edit_recipe', recipe_id=recipe['id']) }}">
                 Muokkaa reseptiä
+                
             </a>
+
+            <form method="POST"
+                  action="{{ url_for('delete_recipe', recipe_id=recipe['id']) }}">
+                <button type="submit">Poista resepti</button>
+            </form>
+
         {% endif %}
 
         <p>
