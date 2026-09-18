@@ -17,65 +17,65 @@
 # Tässä pääasiallinen tietokohde on ruokaresepti ja toissijainen tietokohde on kommentti reseptiin.
 ## Sovelluksen testaaminen
 #
-#1. Kloonaa repositorio ja siirry projektin kansioon.
+# 1. Kloonaa repositorio ja siirry projektin kansioon.
 #
-#2. Luo virtuaaliympäristö:
-#
-#
-#python3 -m venv venv
+# 2. Luo virtuaaliympäristö:
 #
 #
-#3. Aktivoi virtuaaliympäristö:
-#
-#macOS / Linux:
-#
-#bash
-#source venv/bin/activate
+# python3 -m venv venv
 #
 #
-#Windows:
+# 3. Aktivoi virtuaaliympäristö:
+#
+# macOS / Linux:
+#
+# bash
+# source venv/bin/activate
 #
 #
-#venv\Scripts\activate
+# Windows:
 #
 #
-#4. Asenna Flask:
+# venv\Scripts\activate
 #
 #
-#pip install flask
+# 4. Asenna Flask:
 #
 #
-#5. Luo SQLite-tietokanta `schema.sql`-tiedoston perusteella:
+# pip install flask
 #
 #
-#sqlite3 database.db < schema.sql
+# 5. Luo SQLite-tietokanta `schema.sql`-tiedoston perusteella:
 #
 #
-#6. Käynnistä sovellus:
+# sqlite3 database.db < schema.sql
 #
 #
-#flask run
+# 6. Käynnistä sovellus:
 #
 #
-#7. Avaa selaimessa:
+# flask run
 #
 #
-#http://127.0.0.1:5000
+# 7. Avaa selaimessa:
+#
+#
+# http://127.0.0.1:5000
 #
 #
 ## Sovelluksen kokeileminen
 #
-#Sovelluksessa voi tällä hetkellä:
+# Sovelluksessa voi tällä hetkellä:
 #
-#rekisteröidä uuden käyttäjän
-#* kirjautua sisään ja ulos
-#* lisätä uuden budjettireseptin
-#* selata reseptejä etusivulla
-#* hakea reseptejä nimellä, ainesosilla tai valmistusohjeen sisällöllä
-#* avata reseptin omalle sivulleen
-#* muokata omia reseptejä
-#* poistaa omia reseptejä
+# rekisteröidä uuden käyttäjän
+# - kirjautua sisään ja ulos
+# -  lisätä uuden budjettireseptin
+# - selata reseptejä etusivulla
+# - hakea reseptejä nimellä, ainesosilla tai valmistusohjeen sisällöllä
+# - avata reseptin omalle sivulleen
+# - muokata omia reseptejä
+# - poistaa omia reseptejä
 #
-#Reseptin lisääminen vaatii kirjautumisen. Käyttäjä voi muokata ja poistaa vain itse lisäämiään reseptejä.
+# Reseptin lisääminen vaatii kirjautumisen. Käyttäjä voi muokata ja poistaa vain itse lisäämiään reseptejä.
 #
-#Tietokantatiedosto `database.db` ei kuulu repositorioon, vaan se luodaan paikallisesti `schema.sql`-tiedoston perusteella.
+# Tietokantatiedosto `database.db` ei kuulu repositorioon, vaan se luodaan paikallisesti `schema.sql`-tiedoston perusteella.
